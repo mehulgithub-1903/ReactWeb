@@ -1,0 +1,25 @@
+import React, { useState } from "react"
+import './index.css'
+/*
+this is hooks in react useState hooks the initial value and as we call setstate
+it updates the state*/
+const App =()=>{
+    let time=new Date().toLocaleTimeString();
+
+    const[currTime,setTime]=useState(time);
+
+const UpTime=()=>{
+   let newtime=new Date().toLocaleTimeString();
+    setTime(newtime);
+}
+setInterval(UpTime,1000);
+    return(
+      <>
+      <div className="heading">
+        <h1>{currTime}</h1>
+        </div> 
+            </>
+        );
+
+}
+export default App;

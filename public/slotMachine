@@ -1,0 +1,40 @@
+import  React from 'react'
+import './index.css'
+
+const SpanM=(props)=>{
+ let {x,y,z}=props;   
+  if(x===y && y===z){
+      return (
+        <>
+        <h2> {x} {y} {z}</h2>
+        <h1>This is matching</h1>
+        </>
+      );
+  }else{
+    return(
+        <>
+        <h2> {x} {y} {z}</h2>
+        <h1>This is not matching</h1>
+        </>
+    );
+  }
+}
+const App =()=>{
+    return (
+        <>
+        <div className="heading">
+        <h1 > 🎰 Welcome to <span>  💰  SLOT MACHINE GAME 💰 </span> 🎰 </h1>
+        </div>
+        <div className="slotM">
+        <SpanM x='😃 ' y='😇' z='😇' />
+        <hr></hr>
+        <SpanM x='😇' y='😇' z='😇' />
+        <hr></hr>
+        <SpanM x='💟' y='💟' z='😇' />
+        </div>
+        </>
+
+    );  
+}
+
+export default App;

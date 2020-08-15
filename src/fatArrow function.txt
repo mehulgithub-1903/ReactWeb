@@ -1,0 +1,7 @@
+fatArrow function
+function sum(a,b){
+    return a+b;
+}
+fat fatArrow//
+
+const sum(a,b)=> a+b;
