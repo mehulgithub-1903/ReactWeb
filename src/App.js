@@ -9,34 +9,60 @@ controllin
 
 const App=()=>{
  
-        const [name,setName]=useState();
-        const[name2,setName2]=useState();
-        const[firstName,setFull]=useState();
-        const[lastName,setLast]=useState();
-    const UpdateLogin=(event)=>{
-    setName(event.target.value);
-    }
-    const UpdatePass=(event)=>{
-        setName2(event.target.value);
-    }
-    const UpdateFull=(event)=>{
-        //this is to prevent default behaviour of form 
-        event.preventDefault();
-        setFull(name);
-        setLast(name2);
-    }
+      const[fullName,setFullName] =useState({
+          fname:'',
+          lname:'',
+          email:'',
+      })
+
+   const InputEvent=(event)=>{
+  const {value,name} =event.target;
+
+    setFullName((preValue)=>{
+        if(name==="fname"){
+            return{
+                fname:value,
+                lname:preValue.lname,
+                email:preValue.email
+            }
+        }
+        if(name==="lname"){
+            return{
+                fname:preValue.fname, 
+                lname:value, 
+                email:preValue.email   
+            }
+        } if(name==="email"){
+            return{
+                fname:preValue.fname, 
+                lname:preValue.lname,
+                email:value    
+            }
+        }
+
+    });
+
+   };
+    
+   const onSubmits=(event)=>{
+    event.preventDefault();
+    alert("form submitted")
+   }
     return (
         <>
-        <form onSubmit={UpdateFull}>
+        <form onSubmit={onSubmits}>
         <div>
-    <h1>Hello {firstName} {lastName}</h1>
+    <h1>Hello {fullName.fname} {fullName.lname} {fullName.email}</h1>
         <input  type="text" placeholder='Your Name' 
-        onChange={UpdateLogin} value={name}>
+        onChange={InputEvent} name="fname" value={fullName.fname}>
         </input>
-        <input  type="password" placeholder='Last Name' 
-        onChange={UpdatePass} value={name2}>
+        <input  type="password" name="lname" placeholder='Last Name' 
+        onChange={InputEvent} value={fullName.lname}>
         </input>
-        <button type="submit">CLick Me</button>
+        <input  type="email" placeholder='Your Email' 
+        onChange={InputEvent} name="email" value={fullName.email}>
+        </input>
+        <button type="submit">Click Me</button>
         </div>
         </form>
         </>
